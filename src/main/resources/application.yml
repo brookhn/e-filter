@@ -1,0 +1,29 @@
+server:
+  port: 8078
+spring:
+  application:
+    name: spring.gateway
+  cloud:
+    gateway:
+      routes:
+      - id: nameRoot
+        uri: http://www.baidu.com
+        predicates:
+        - Path=/baidu/test/**
+        filters:
+        - StripPrefix=2
+
+#  cloud:
+#    gateway:
+#      routes:
+#        -id: prefix_route
+#            uri: http://localhost:8078/test/Hystrix?isSleep=true
+#            predicates:
+#            -path=/test/Hystrix
+#            filters:
+#            -name: Hystrix
+#              args:
+#                name:fallbackcmd
+#                fallbackUri: forward:/fallback
+#hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
+#config gateway
